@@ -2,7 +2,7 @@ namespace MadKnight.Enums
 {
     public enum SceneEnum
     {
-        MainMenu,
+        MainMenu2,
         Level01,
     }
 }

@@ -41,7 +41,7 @@ namespace MadKnight
         {
             if (_fadeOutTween.IsComplete())
             {
-                SceneManager.LoadScene(nameof(SceneEnum.MainMenu));
+                SceneManager.LoadScene(nameof(SceneEnum.MainMenu2));
                 return;
             }
 
