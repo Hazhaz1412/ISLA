@@ -59,6 +59,14 @@ namespace MadKnight
                     nameof(PlayerAnimationEnum.FHorizontalVelocity),
                     Mathf.Abs(_rb.linearVelocityX)
             );
+            _anim.SetFloat(
+                    nameof(PlayerAnimationEnum.FVerticalVelocity),
+                    _rb.linearVelocityY
+            );
+            _anim.SetBool(
+                    nameof(PlayerAnimationEnum.BIsOnFloor),
+                    _isOnFloor
+            );
 
             if (Camera.main)
             {
@@ -132,6 +140,7 @@ namespace MadKnight
                         {
                             _state = PlayerState.Airborne;
                             _hasJumped = false;
+                            _anim.SetTrigger(nameof(PlayerAnimationEnum.TJump));
                         }
                     }
                     break;
