@@ -7564,7 +7564,7 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: a79441f348de89743a2939f4d699eac1, type: 3}
-  m_Name:
+  m_Name: 
   m_EditorClassIdentifier: Unity.RenderPipelines.Universal.Runtime::UnityEngine.Rendering.Universal.UniversalAdditionalCameraData
   m_RenderShadows: 1
   m_RequiresDepthTextureOption: 2
@@ -8068,3 +8068,4 @@ SceneRoots:
   - {fileID: 1895018282}
   - {fileID: 598349916}
   - {fileID: 2138886679}
+  - {fileID: 4279701426841793687}
