@@ -137,6 +137,19 @@ namespace MadKnight.Save
                 checkpointScene = "Level01",
                 checkpointPosition = Vector3.zero,
                 playTimeSeconds = 0f,
+                
+                // Initialize arrays
+                inventoryItemIDs = new string[0],
+                inventoryQuantities = new int[0],
+                solvedPuzzleIDs = new string[0],
+                unlockedDoorIDs = new string[0],
+                collectedItemIDs = new string[0],
+                completedLevelIDs = new string[0],
+                unlockedLevelIDs = new string[] { "Level01" }, // First level unlocked
+                completedDialogueIDs = new string[0],
+                npcStateData = new string[0],
+                discoveredClueIDs = new string[0],
+                readNotesIDs = new string[0]
             };
             
             SaveAutoSave(newSave);
@@ -696,24 +709,45 @@ namespace MadKnight.Save
     }
     
     /// <summary>
-    /// Player Save Data - CHỈ lưu những dữ liệu cần thiết
+    /// Player Save Data - Cho game giải đố + thu thập vật phẩm
     /// Dữ liệu được mã hóa AES-256 khi lưu vào file
     /// </summary>
     [System.Serializable]
     public class PlayerSaveData
     {
-        // Meta data
-        public int saveVersion;
-        public string saveTime;
-        public float playTimeSeconds;
-        public int slotNumber;        // 0 = autosave, 1-10 = manual slots
+        // ===== META DATA =====
+        public int saveVersion;           // Version của save file
+        public string saveTime;           // Thời gian lưu "2024-01-15 14:30:00"
+        public float playTimeSeconds;     // Tổng thời gian chơi (giây)
+        public int slotNumber;            // 0 = autosave, 1-10 = manual slots
         
-        // Scene & Position (CHỈ cần thiết)
-        public string currentScene;
-        public Vector3 playerPosition;
+        // ===== SCENE & POSITION =====
+        public string currentScene;       // Scene hiện tại "Level01"
+        public Vector3 playerPosition;    // Vị trí player trong scene
         
-        // Checkpoint (CHỈ cần thiết)
-        public string checkpointScene;
-        public Vector3 checkpointPosition;
+        // ===== CHECKPOINT =====
+        public string checkpointScene;    // Scene của checkpoint gần nhất
+        public Vector3 checkpointPosition;// Vị trí checkpoint
+        
+        // ===== INVENTORY - THU THẬP VẬT PHẨM =====
+        public string[] inventoryItemIDs;     // ID của vật phẩm (ví dụ: "key_red", "potion_health")
+        public int[] inventoryQuantities;     // Số lượng tương ứng (ví dụ: 1, 3)
+        
+        // ===== PUZZLE PROGRESS - TIẾN TRÌNH GIẢI ĐỐ =====
+        public string[] solvedPuzzleIDs;      // Danh sách puzzle đã giải (ví dụ: "puzzle_door_01", "puzzle_safe_02")
+        public string[] unlockedDoorIDs;      // Danh sách cửa đã mở (ví dụ: "door_main_01")
+        public string[] collectedItemIDs;     // Danh sách vật phẩm đã nhặt trong world (ví dụ: "item_coin_01", "item_key_basement")
+        
+        // ===== GAME PROGRESS =====
+        public string[] completedLevelIDs;    // Danh sách level đã hoàn thành
+        public string[] unlockedLevelIDs;     // Danh sách level đã mở khóa
+        
+        // ===== NPC & DIALOGUE =====
+        public string[] completedDialogueIDs; // Danh sách hội thoại đã xem (để tránh lặp lại)
+        public string[] npcStateData;         // Trạng thái NPC (ví dụ: "npc_guard_01:dead", "npc_shopkeeper:friendly")
+        
+        // ===== NOTES & CLUES - GHI CHÚ =====
+        public string[] discoveredClueIDs;    // Danh sách manh mối đã phát hiện (cho puzzle)
+        public string[] readNotesIDs;         // Danh sách ghi chú đã đọc
     }
 }
